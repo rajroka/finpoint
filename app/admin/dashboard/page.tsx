@@ -61,7 +61,7 @@ const AppointmentTable: React.FC = () => {
       <div className="overflow-hidden shadow-xl rounded-lg">
         <table className="min-w-full bg-white table-auto border-collapse">
           <thead>
-            <tr className="bg-blue-600 text-white">
+            <tr className="bg-purple-900 text-white">
               <th className="py-3 px-6 text-sm font-semibold text-left">ID</th>
               <th className="py-3 px-6 text-sm font-semibold text-left">
                 Full Name
