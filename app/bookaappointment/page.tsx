@@ -1,23 +1,43 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function ContactPage() {
-
-
-  const router = useRouter()
+  const [loading, setloading] = useState(false);
+  const router = useRouter();
   const {
     register,
-    handleSubmit,reset , 
+    handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  
-  const onSubmit = (data: any) => {
-    console.log("Contact Form Data:", data);
-    alert("Message sent successfully!");
-    reset();
-    router.replace('/')
+
+  const onSubmit = async (data: any) => {
+    setloading(true);
+    console.log(data);
+    try {
+      const response = await fetch("/api/createdata", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create data");
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+
+      setloading(false);
+      alert("Message sent successfully!");
+      reset();
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setloading(false);
+    }
   };
 
   return (
@@ -32,10 +52,14 @@ export default function ContactPage() {
             <label className="block text-gray-600">Full Name</label>
             <input
               type="text"
-              {...register("name", { required: "Name is required" })}
+              {...register("fullName", { required: "Name is required" })}
               className="w-full p-2 border rounded"
             />
-            {errors.name && <p className="text-red-500 text-sm">{errors.name?.message as string }</p>}
+            {errors.name && (
+              <p className="text-red-500 text-sm">
+                {errors.name?.message as string}
+              </p>
+            )}
           </div>
 
           {/* Email */}
@@ -46,7 +70,11 @@ export default function ContactPage() {
               {...register("email", { required: "Email is required" })}
               className="w-full p-2 border rounded"
             />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email?.message as string }</p>}
+            {errors.email && (
+              <p className="text-red-500 text-sm">
+                {errors.email?.message as string}
+              </p>
+            )}
           </div>
 
           {/* Message */}
@@ -56,7 +84,11 @@ export default function ContactPage() {
               {...register("message", { required: "Message is required" })}
               className="w-full p-2 border rounded h-24"
             />
-            {errors.message && <p className="text-red-500 text-sm">{errors.message?.message as string }</p>}
+            {errors.message && (
+              <p className="text-red-500 text-sm">
+                {errors.message?.message as string}
+              </p>
+            )}
           </div>
 
           {/* Submit Button */}
@@ -64,29 +96,13 @@ export default function ContactPage() {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
@@ -98,39 +114,39 @@ export default function ContactPage() {
 // const Contact = () => {
 
 //     const { register  ,reset , handleSubmit , formState:{ errors } } = useForm()
-    
+
 //     function  formSubmit (data :any ){
 //        console.log(data) ;
 //          toast.success('form is submitted ' , {
-//           autoClose : 1500  , 
+//           autoClose : 1500  ,
 
 //          })
 //        reset()
 
 //       //  toast.error('form is not submitted', {
-//       //   autoClose : 3000 
+//       //   autoClose : 3000
 //       //  })
 //     }
 //   return (
 //     <div className="w-screen font-inter  h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
-      
+
 //       {/* Heading */}
-//       <motion.h2 
+//       <motion.h2
 //         className="text-4xl font-bold text-gray-800 mb-6 text-center"
-//         initial={{ opacity: 0, y: -50 }} 
-//         animate={{ opacity: 1, y: 0 }} 
+//         initial={{ opacity: 0, y: -50 }}
+//         animate={{ opacity: 1, y: 0 }}
 //         transition={{ duration: 0.5 }}
 //       >
 //         Contact Us
 //       </motion.h2>
 
 //       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-100 p-8 rounded-lg shadow-lg">
-        
+
 //         {/* Contact Details */}
-//         <motion.div 
+//         <motion.div
 //           className="space-y-6"
-//           initial={{ opacity: 0, x: -50 }} 
-//           animate={{ opacity: 1, x: 0 }} 
+//           initial={{ opacity: 0, x: -50 }}
+//           animate={{ opacity: 1, x: 0 }}
 //           transition={{ duration: 0.5, delay: 0.2 }}
 //         >
 //           <div className="flex items-center space-x-4">
@@ -148,42 +164,41 @@ export default function ContactPage() {
 //         </motion.div>
 
 //         {/* Contact Form */}
-//         <motion.form 
+//         <motion.form
 //           className="flex flex-col space-y-4"
-//           initial={{ opacity: 0, x: 50 }} 
-//           animate={{ opacity: 1, x: 0 }} 
+//           initial={{ opacity: 0, x: 50 }}
+//           animate={{ opacity: 1, x: 0 }}
 //           transition={{ duration: 0.5, delay: 0.2 }}
 //           onSubmit={handleSubmit(formSubmit)}
 //         >
-//           <input 
-//             type="text" 
-//             placeholder="Your Name" 
+//           <input
+//             type="text"
+//             placeholder="Your Name"
 //             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 //             {...register('name' ,  {
-             
+
 //                 required : 'Name is required' ,
-                
 
 //               })}
 //           />
 //            <p className=" text-red-600">{errors.name?.message as string}</p>
-//           <input 
-//             type="email" 
-//             placeholder="Your Email" 
+//           <input
+//             type="email"
+//             placeholder="Your Email"
 //             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 //               {...register('email' , {
 
 //                 required : 'Email is required'
-//               })}        
+//               })}
 //          />
 //          <p className=" text-red-600">{errors.email?.message as string}</p>
-//           <textarea 
-//             rows={4} 
-//             placeholder="Your Message" 
+//           <textarea
+//             rows={4}
+//             placeholder="Your Message"
 //             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 //           ></textarea>
-//           <button 
-//             type="submit" 
+//           <button
+//             type="submit"
 //             className="bg-secondary  text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
 //           >
 //             Send Message
@@ -197,4 +212,3 @@ export default function ContactPage() {
 // };
 
 // export default Contact;
-
