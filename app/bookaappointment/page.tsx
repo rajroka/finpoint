@@ -3,9 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
+import {  postData } from "../api/Form";
 
 export default function ContactPage() {
+<<<<<<< HEAD
   const [loading, setloading] = useState(false);
+=======
+>>>>>>> 4c4f13f (here)
   const router = useRouter();
   const {
     register,
@@ -14,6 +19,7 @@ export default function ContactPage() {
     formState: { errors },
   } = useForm();
 
+<<<<<<< HEAD
   const onSubmit = async (data: any) => {
     setloading(true);
     console.log(data);
@@ -38,15 +44,32 @@ export default function ContactPage() {
       console.error("Error sending message:", error);
       setloading(false);
     }
+=======
+  const formSubmit = async (data: any) => {
+    try {
+      const response = await postData(data);
+      console.log(response);
+      console.log("Contact Form Data:", data);
+      toast.success("form submitted successfully", {
+        autoClose: 3000,
+        onClose: () => router.replace("/"),
+      });
+      router.replace("/");
+    } catch (error) {
+      console.error("form is not submitted", error);
+    }
+
+    reset();
+>>>>>>> 4c4f13f (here)
   };
 
   return (
-    <div className="min-h-screen flex font-inter  items-center justify-center bg-gray-100 p-6">
+    <div className=" h-[calc(100svh-4.5rem)] flex font-inter items-center justify-center bg-gray-100 p-6">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
           Contact Us
         </h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(formSubmit)} className="space-y-4">
           {/* Name */}
           <div>
             <label className="block text-gray-600">Full Name</label>
@@ -67,13 +90,23 @@ export default function ContactPage() {
             <label className="block text-gray-600">Email</label>
             <input
               type="email"
-              {...register("email", { required: "Email is required" })}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email format",
+                },
+              })}
               className="w-full p-2 border rounded"
             />
             {errors.email && (
+<<<<<<< HEAD
               <p className="text-red-500 text-sm">
                 {errors.email?.message as string}
               </p>
+=======
+              <p className="text-red-600">{errors.email.message as string}</p>
+>>>>>>> 4c4f13f (here)
             )}
           </div>
 
@@ -100,8 +133,10 @@ export default function ContactPage() {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
+<<<<<<< HEAD
 }
 
 // "use client";
@@ -212,3 +247,6 @@ export default function ContactPage() {
 // };
 
 // export default Contact;
+=======
+}
+>>>>>>> 4c4f13f (here)

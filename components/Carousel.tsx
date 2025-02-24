@@ -12,6 +12,7 @@ const images = [
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -24,14 +25,21 @@ export default function Carousel() {
   // Automatic slide transition
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
+      if (!isHovered) {
+        nextSlide();
+      }
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isHovered]);
 
   return (
-    <div className="relative w-screen h-[300px] my-10 bg-primary px-6 md:px-12 lg:px-24 mx-auto overflow-hidden">
+    <div
+      className="relative w-screen h-[300px] my-10 bg-primary px-6 md:px-12 lg:px-24 mx-auto overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      aria-live="polite"
+    >
       {/* Carousel Container */}
       <div className="relative overflow-hidden rounded-lg flex items-center justify-center w-full h-full">
         <AnimatePresence mode="wait">
@@ -47,10 +55,10 @@ export default function Carousel() {
               >
                 <Image
                   src={image}
-                  width={250}
-                  height={250}
+                  width={500} // Adjust width for better responsiveness
+                  height={300} // Adjust height for better responsiveness
                   alt={`Slide ${index + 1}`}
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-cover w-full h-full"
                 />
               </motion.div>
             )
@@ -73,6 +81,18 @@ export default function Carousel() {
       >
         &rarr;
       </button>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full ${currentSlide === index ? 'bg-white' : 'bg-gray-400'} transition`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -3,9 +3,10 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+
 const Hero = () => {
   return (
-    <div className="w-screen h-auto min-h-screen font-inter px-6 md:px-12 lg:px-24 bg-primary text-white flex items-center">
+    <div className="w-screen h-auto  min-h-[calc(100svh - 18em)] font-inter px-6 md:px-12 lg:px-24 bg-primary text-white/70  flex items-center">
       <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between">
         
         {/* Text Section */}
@@ -15,18 +16,19 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="lg:w-1/2 w-full flex flex-col justify-center space-y-6"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-black">
+          <h1 className="text-4xl md:text-5xl font-bold text-black/90 dark:text-white/70   ">
             Elevate Your Finances with Expert Guidance
           </h1>
-          <p className="text-lg text-gray-600  leading-relaxed">
+          <p className="text-base  text-gray-600 dark:text-white/60   leading-relaxed">
             Unlock financial success with our **Audit & Assurance, Taxation, VAT Consultancy, 
             Risk Management, and Accounting Services**. <br /> Ensure compliance and financial growth today.
           </p>
-          <button className="bg-yellow-400 text-purple-900 px-8 py-3 rounded-lg shadow-lg hover:bg-yellow-300 transition text-lg font-semibold">
+          <button className=" inline-block  bg-purple-800 text-white   dark:text-white/70  px-8 py-3 rounded  shadow-lg  transition text-lg font-semibold">
             Get a Free Consultation
           </button>
+          
         </motion.div>
-
+         
         {/* Image Section */}
         <motion.div 
           initial={{ opacity: 0, x: 50 }} 
@@ -42,7 +44,7 @@ const Hero = () => {
             className="object-contain drop-shadow-lg"
           />
         </motion.div>
-
+        
       </div>
     </div>
   );

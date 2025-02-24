@@ -25,7 +25,12 @@ const Contact = () => {
     //  })
   }
   return (
+<<<<<<< HEAD
     <div className="w-screen font-inter  h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
+=======
+    <div className="w-screen font-inter h-auto  lg:min-h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
+      
+>>>>>>> 4c4f13f (here)
       {/* Heading */}
       <motion.h2
         className="text-4xl font-bold text-gray-800 mb-6 text-center"
