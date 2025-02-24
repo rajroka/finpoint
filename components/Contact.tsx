@@ -15,22 +15,14 @@ const Contact = () => {
 
   function formSubmit(data: any) {
     console.log(data);
-    toast.success("form is submitted ", {
+    toast.success("Form submitted successfully!", {
       autoClose: 1500,
     });
     reset();
-
-    //  toast.error('form is not submitted', {
-    //   autoClose : 3000
-    //  })
   }
+
   return (
-<<<<<<< HEAD
-    <div className="w-screen font-inter  h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
-=======
-    <div className="w-screen font-inter h-auto  lg:min-h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
-      
->>>>>>> 4c4f13f (here)
+    <div className="w-screen font-inter h-auto lg:min-h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
       {/* Heading */}
       <motion.h2
         className="text-4xl font-bold text-gray-800 mb-6 text-center"
@@ -51,9 +43,7 @@ const Contact = () => {
         >
           <div className="flex items-center space-x-4">
             <FaMapMarkerAlt className="text-blue-600 text-2xl" />
-            <p className="text-lg text-gray-700 overflow-y-auto">
-              Imadol,kathmandu,Nepal
-            </p>
+            <p className="text-lg text-gray-700">Imadol, Kathmandu, Nepal</p>
           </div>
           <div className="flex items-center space-x-4">
             <FaPhone className="text-blue-600 text-2xl" />
@@ -77,28 +67,29 @@ const Contact = () => {
             type="text"
             placeholder="Your Name"
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...register("name", {
-              required: "Name is required",
-            })}
+            {...register("name", { required: "Name is required" })}
           />
-          <p className=" text-red-600">{errors.name?.message as string}</p>
+          <p className="text-red-600">{errors.name?.message as string}</p>
+
           <input
             type="email"
             placeholder="Your Email"
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...register("email", {
-              required: "Email is required",
-            })}
+            {...register("email", { required: "Email is required" })}
           />
-          <p className=" text-red-600">{errors.email?.message as string}</p>
+          <p className="text-red-600">{errors.email?.message as string}</p>
+
           <textarea
             rows={4}
             placeholder="Your Message"
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            {...register("message", { required: "Message is required" })}
           ></textarea>
+          <p className="text-red-600">{errors.message?.message as string}</p>
+
           <button
             type="submit"
-            className="bg-secondary  text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
           >
             Send Message
           </button>

@@ -14,10 +14,10 @@ const Key = () => {
     >
         
 
-        <div  cl>
+        <div  >
            <video  className= '' src="" autoPlay muted loop ></video>
         </div>
-        <div cl>
+        <div >
 
         </div>
     </div>
