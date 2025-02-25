@@ -34,6 +34,10 @@ async function login({email, password}: {email: string, password: string}){
 
 }
 
+async function postContact (name: string, email: string, message: string){
+    const response =  await axios.post( '/api/contact',{name , email , message })
+     return response.data 
+}
 
-export {postData , login}
+export {postData , login , postContact}
 

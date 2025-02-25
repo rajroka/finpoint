@@ -10,7 +10,7 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   
   return (
-    <div className="z-[999] sticky top-0 font-inter bg-purple-800 text-white">
+    <div className="z-[999] sticky top-0  font-inter bg-purple-800 text-white">
       <div className="w-screen mx-auto h-[72px] px-6 md:px-12 lg:px-24 flex items-center justify-between">
         
         {/* Logo */}
@@ -23,10 +23,10 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex">
           <ul className="flex items-center space-x-6">
-            <li><Link href="/" className="hover:bg-purple-700 px-3 py-2 rounded-md transition">Home</Link></li>
-            <li><Link href="/services" className="hover:bg-purple-700 px-3 py-2 rounded-md transition">Services</Link></li>
-            <li><Link href="/contact" className="hover:bg-purple-700 px-3 py-2 rounded-md transition">Contact</Link></li>
-            <li><Link href="/blog" className="hover:bg-purple-700 px-3 py-2 rounded-md transition">Blogs</Link></li>
+            <li><Link href="/" className="hover:bg-purple-700 px-3 py-2 rounded transition">Home</Link></li>
+            <li><Link href="/services" className="hover:bg-purple-700 px-3 py-2 rounded transition">Services</Link></li>
+            <li><Link href="/contact" className="hover:bg-purple-700 px-3 py-2 rounded transition">Contact</Link></li>
+            <li><Link href="/blog" className="hover:bg-purple-700 px-3 py-2 rounded transition">Blogs</Link></li>
            
             <li>
               <Link href="/bookaappointment">

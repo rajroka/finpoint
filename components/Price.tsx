@@ -37,7 +37,7 @@ const Pricing = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen h-auto px-6 md:px-12 lg:px-24  font-inter flex flex-col items-center justify-center bg-gray-100 p-6"
+      className="min-h-screen h-auto px-6 md:px-12 lg:px-24  font-inter flex flex-col items-center justify-center bg-white  p-6"
     >
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
@@ -58,11 +58,11 @@ const Pricing = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: index * 0.2 }}
-            className="bg-secondary shadow-lg backdrop-blur-sm rounded-lg p-6 text-center transform transition-all hover:scale-105"
+            className="bg-gray-200  shadow-lg backdrop-blur-sm rounded p-6 text-center transform transition-all hover:scale-105"
           >
-            <h2 className=" text-white text-2xl font-semibold mb-4">{plan.name}</h2>
-            <p className="text-lg font-semibold  text-gray-200  ">{plan.price}</p>
-            <ul className="mt-4 space-y-2 text-gray-200 text-base  text-start   mx-auto  ">
+            <h2 className=" text-black  text-2xl font-semibold mb-4">{plan.name}</h2>
+            <p className="text-lg font-semibold  text-black  ">{plan.price}</p>
+            <ul className="mt-4 space-y-2 text-black  text-base  text-start   mx-auto  ">
               {plan.features.map((feature, idx) => (
                 <li key={idx}>✅ {feature}</li>
               ))}

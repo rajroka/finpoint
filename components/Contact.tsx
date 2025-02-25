@@ -3,7 +3,10 @@
 import { motion } from "framer-motion";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast , ToastContainer } from "react-toastify";
+
+import axios from "axios";
+import { useState } from "react";
 
 const Contact = () => {
   const {
@@ -11,15 +14,27 @@ const Contact = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-
-  function formSubmit(data: any) {
+  } = useForm<{ fullName: string, name: string , phoneno : Number ,  email: string; message: string  }>();
+     const [loading, setLoading] = useState(false);
+   async function formSubmit(data : any ) {
     console.log(data);
-    toast.success("Form submitted successfully!", {
-      autoClose: 1500,
-    });
-    reset();
-  }
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/contact", data);
+      console.log("Response:", response.data);
+      toast.success("Email sent successfully!", { autoClose: 3000 });
+      reset();
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to send email.");
+      setLoading(false);
+    }
+    
+  };
+    
+
+    
+  
 
   return (
     <div className="w-screen font-inter h-auto lg:min-h-screen px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center">
@@ -56,46 +71,40 @@ const Contact = () => {
         </motion.div>
 
         {/* Contact Form */}
-        <motion.form
-          className="flex flex-col space-y-4"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          onSubmit={handleSubmit(formSubmit)}
-        >
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...register("name", { required: "Name is required" })}
-          />
-          <p className="text-red-600">{errors.name?.message as string}</p>
+        <form onSubmit={handleSubmit(formSubmit)} className="space-y-4">
+          <div>
+            <label className="block text-gray-600">Full Name</label>
+            <input type="text" {...register("fullName", { required: "Name is required" })} className="w-full p-2 border rounded" />
+            {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName.message as string }</p>}
+          </div>
+               
+          <div>
+            <label className="block text-gray-600">Phone no </label>
+            <input type="number" {...register("phoneno", { required: "Phone no  is required" })} className="w-full p-2 border rounded" />
+            {errors.phoneno && <p className="text-red-500 text-sm">{errors.phoneno.message as string }</p>}
+          </div>
 
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...register("email", { required: "Email is required" })}
-          />
-          <p className="text-red-600">{errors.email?.message as string}</p>
+          <div>
+            <label className="block text-gray-600">Email</label>
+            <input type="email" {...register("email", { required: "Email is required"  , pattern: {
+      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+      message: "Invalid email format",
+    },})} className="w-full p-2 border rounded" />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email.message as string }</p>}
+          </div>
 
-          <textarea
-            rows={4}
-            placeholder="Your Message"
-            className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...register("message", { required: "Message is required" })}
-          ></textarea>
-          <p className="text-red-600">{errors.message?.message as string}</p>
+          <div>
+            <label className="block text-gray-600">Message</label>
+            <textarea {...register("message", { required: "Message is required" })} className="w-full p-2 border rounded h-24" />
+            {errors.message && <p className="text-red-500 text-sm">{errors.message.message as string }</p>}
+          </div>
 
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
-          >
-            Send Message
+          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+            {loading ? "Sending..." : "Send Message"}
           </button>
-        </motion.form>
+        </form>
       </div>
-      <ToastContainer />
+     < ToastContainer />
     </div>
   );
 };

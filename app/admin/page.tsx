@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React from "react";
 
-const page = () => {
-  return <div>admin page</div>;
-};
 
-export default page;
-=======
-"use client";
+
+
 import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -104,4 +98,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
->>>>>>> 4c4f13f (here)
