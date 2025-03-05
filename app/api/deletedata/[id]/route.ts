@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Appointment from "@/app/model/appointmentModel";
-import connectToDatabase from "@/app/libs/db";
+
 
 export async function DELETE(req: NextRequest) {
   try {
@@ -8,7 +8,7 @@ export async function DELETE(req: NextRequest) {
     const appointmentId = pathname.split("/").pop();
 
     console.log(appointmentId);
-    await connectToDatabase();
+    
     const deletedAppointment = await Appointment.findByIdAndDelete(
       appointmentId
     );

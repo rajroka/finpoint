@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import Appointment from "@/app/model/appointmentModel";
-import connectToDatabase from "@/app/libs/db";
 
-export async function GET( ) {
+export  default async function GET( ) {
   try {
-    await connectToDatabase();
+    
     const appointments = await Appointment.find();
     return NextResponse.json({ appointments }, { status: 200 });
   } catch (error: any) {
