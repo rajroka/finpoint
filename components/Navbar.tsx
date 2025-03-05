@@ -22,7 +22,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex">
-          <ul className="flex items-center space-x-6">
+          <ul className="flex dark:text-white/70  items-center space-x-6">
             <li><Link href="/" className="hover:bg-purple-700 px-3 py-2 rounded transition">Home</Link></li>
             <li><Link href="/services" className="hover:bg-purple-700 px-3 py-2 rounded transition">Services</Link></li>
             <li><Link href="/contact" className="hover:bg-purple-700 px-3 py-2 rounded transition">Contact</Link></li>
@@ -30,7 +30,7 @@ const Navbar = () => {
            
             <li>
               <Link href="/bookaappointment">
-                <button className="bg-white rounded p-2 text-black hover:bg-purple-700 hover:text-white transition">
+                <button className="dark:bg-white rounded p-2 text-black hover:bg-purple-700 hover:text-white transition">
                   Book an Appointment
                 </button>
               </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
 
 
             {/* Navigation Links */}
-            <div className="flex flex-col space-y-4 w-full h-svh  text-black  bg-primary px-6 py-6 items-center">
+            <div className="flex flex-col dark:text-white/70  space-y-4 w-full h-svh  text-black  bg-primary px-6 py-6 items-center">
               <Link href="/" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700 hover:text-white transition">Home</Link>
               <Link href="/blogs" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700  hover:text-white transition">Blogs</Link>
               <Link href="/services" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700 hover:text-white transition">Services</Link>

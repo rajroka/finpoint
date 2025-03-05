@@ -59,7 +59,7 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="h-auto w-screen z-[50] dark:text-white/70  text-black dark:bg-black/90  bg-white font-inter px-6 md:px-12 lg:px-24 py-12 flex flex-col items-center">
+    <div className="h-auto w-screen z-[50] dark:text-white/70  text-black dark:bg-primary  bg-white font-inter px-6 md:px-12 lg:px-24 py-12 flex flex-col items-center">
       
       {/* Heading */}
       <h2 className="text-3xl font-bold text-center mb-8 dark:text-white/70   text-gray-900">
@@ -71,7 +71,7 @@ const Services = () => {
         {services.map((service, index) => (
           <motion.div
             key={index}
-            className="p-6 dark:bg-gray-800 bg-gray-200  rounded shadow  flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105"
+            className="p-6 dark:bg-gray-900 border border-gray-600 bg-gray-200  rounded shadow  flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.15 }}

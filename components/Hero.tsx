@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="w-screen h-auto  min-h-[calc(100svh)] font-inter px-6 md:px-12 lg:px-24 bg-primary text-white/70  flex items-center">
+    <div className="w-screen h-auto  min-h-[calc(100svh)] font-inter px-6 md:px-12 lg:px-24 dark:bg-primary text-black   dark:text-white/70  flex items-center">
       <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between">
         
         {/* Text Section */}
