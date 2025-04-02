@@ -16,6 +16,7 @@ export default function ContactPage() {
     try {
       const response = await axios.post("/api/contact", data);
       console.log("Response:", response.data);
+      
       toast.success("Email sent successfully!", { autoClose: 3000 });
       reset();
     } catch (error) {
