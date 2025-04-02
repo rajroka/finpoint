@@ -1,83 +1,194 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { FiMenu } from "react-icons/fi";
 import Image from "next/image";
-
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { ModeToggle } from "./ModeToggle";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
-  
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const closeSheet = () => setIsSheetOpen(false);
+
   return (
-    <div className="z-[999] sticky top-0  font-inter bg-purple-800 text-white">
-      <div className="w-screen mx-auto h-[72px] px-6 md:px-12 lg:px-24 flex items-center justify-between">
-        
+    <nav className="z-[400] sticky top-0 h-14 w-full px-4 sm:px-6 md:px-12 lg:px-24 bg-purple-800 text-white backdrop-blur-sm dark:bg-purple-900/90">
+      <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between">
         {/* Logo */}
-        <div className="font-semibold">
-          <Link href="/" className="flex">
-            <Image width={50} height={50} src="/images/finallogo.jpg" alt="Logo" className="rounded-xl" />
-          </Link>
-        </div>
+        <Link href="/" className="flex-shrink-0">
+          <Image
+            width={40}
+            height={40}
+            src="/images/finallogo.jpg"
+            alt="Logo"
+            className="rounded-xl"
+            priority
+          />
+        </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex">
-          <ul className="flex dark:text-white/70  items-center space-x-6">
-            <li><Link href="/" className="hover:bg-purple-700 px-3 py-2 rounded transition">Home</Link></li>
-            <li><Link href="/services" className="hover:bg-purple-700 px-3 py-2 rounded transition">Services</Link></li>
-            <li><Link href="/contact" className="hover:bg-purple-700 px-3 py-2 rounded transition">Contact</Link></li>
-            <li><Link href="/blog" className="hover:bg-purple-700 px-3 py-2 rounded transition">Blogs</Link></li>
-           
-            <li>
-              <Link href="/bookaappointment">
-                <button className="dark:bg-white rounded p-2 text-black hover:bg-purple-700 hover:text-white transition">
-                  Book an Appointment
-                </button>
+        <div className="hidden h-full items-center space-x-1 md:flex">
+          <Link
+            href="/"
+            className="flex h-full items-center px-4 transition-colors hover:bg-purple-700"
+          >
+            Home
+          </Link>
+          <Link
+            href="/services"
+            className="flex h-full items-center px-4 transition-colors hover:bg-purple-700"
+          >
+            Services
+          </Link>
+
+          <div className="relative group h-full ">
+            {/* Parent Link */}
+            <button className="flex items-center gap-1 px-4 py-2 h-full text-white transition-all duration-300  hover:bg-purple-700">
+              Taxes and Process <span className="ml-1">▼</span>
+            </button>
+
+            {/* Dropdown Menu */}
+            <div className="absolute left-0 top-full  -mt-1  w-56 bg-purple-900/90 backdrop-blur-sm text-white  shadow-lg  scale-95 hidden group-hover:block transform transition-all duration-300   ">
+              <Link
+                href="/home"
+                className="block px-5 py-3 hover:bg-purple-600 rounded-md transition"
+              >
+                Taxes
               </Link>
-            </li>
-            <li>< ModeToggle /> </li>
-          </ul>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden p-2  bg-white rounded" onClick={() => setToggle(true)}>
-          <RxHamburgerMenu className="text-black text-2xl" />
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        {toggle && (
-          <div className="fixed inset-0 h-screen w-screen z-50  bg-purple-800 flex flex-col items-center">
-            {/* Top Navbar (Logo & Close Button) */}
-            <div className="w-full h-[80px] px-6 flex items-center justify-between bg-purple-900 text-white shadow-md">
-              <Link href="/" onClick={() => setToggle(false)}>
-                <Image width={50} height={50} src="/logo.png" alt="Logo" className="rounded-xl" />
+              <Link
+                href="/rajroka.com.np"
+                className="block px-5 py-3 hover:bg-purple-600 rounded-md transition"
+              >
+                Adit Process
               </Link>
-              <button className="text-2xl p-2 text-black bg-white rounded " onClick={() => setToggle(false)}>
-                <RxCross2 />
-              </button>
-            </div>
-
-
-
-            {/* Navigation Links */}
-            <div className="flex flex-col dark:text-white/70  space-y-4 w-full h-svh  text-black  bg-primary px-6 py-6 items-center">
-              <Link href="/" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700 hover:text-white transition">Home</Link>
-              <Link href="/blogs" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700  hover:text-white transition">Blogs</Link>
-              <Link href="/services" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700 hover:text-white transition">Services</Link>
-            
-              <Link href="/contact" onClick={() => setToggle(false)} className="w-full text-center py-3 rounded-md hover:bg-purple-700 hover:text-white transition">Contact</Link>
-              <Link href="/bookaappointment" className="w-full " onClick={() => setToggle(false)}>
-                <button className="w-full py-3 bg-white text-purple-800 rounded-md hover:bg-purple-700 hover:text-white transition">
-                  Book an Appointment
-                </button>
+              <a
+                href="https://rajroka.com.np"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-5 py-3 hover:bg-purple-600 rounded-md transition"
+              >
+                Visit Raj Roka
+              </a>
+              <Link
+                href="/contact"
+                className="block px-5 py-3 hover:bg-purple-600 rounded-md transition"
+              >
+                Contact
               </Link>
-             
+              <Link
+                href="/blog"
+                className="block px-5 py-3 hover:bg-purple-600 rounded-md transition"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/book-appointment"
+                className="block px-5 py-3 hover:bg-purple-600 rounded-md transition"
+              >
+                Book Appointment
+              </Link>
             </div>
           </div>
-        )}
 
+          <Link
+            href="/contact"
+            className="flex h-full items-center px-4 transition-colors hover:bg-purple-700"
+          >
+            Contact
+          </Link>
+          <Link
+            href="/blog"
+            className="flex h-full items-center px-4 transition-colors hover:bg-purple-700"
+          >
+            Blogs
+          </Link>
+          <Link
+            href="/bookaappointment"
+            className="flex h-full items-center px-4 transition-colors hover:bg-purple-700"
+          >
+            Book Appointment
+          </Link>
+          <div className="ml-4">
+            <ModeToggle />
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="flex items-center md:hidden">
+          <ModeToggle />
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+            <SheetTrigger asChild>
+              <button
+                className="p-2 text-white transition-colors hover:text-purple-200 focus:outline-none"
+                aria-label="Open menu"
+              >
+                <FiMenu size={24} />
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[300px] z-[500] bg-white dark:bg-gray-900"
+            >
+              <SheetHeader>
+                <nav className="flex flex-col space-y-3 py-6">
+                  <Link
+                    href="/"
+                    className="px-4 py-2 text-gray-800 hover:bg-purple-100 dark:text-white dark:hover:bg-purple-800/50"
+                    onClick={closeSheet}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    href="/services"
+                    className="px-4 py-2 text-gray-800 hover:bg-purple-100 dark:text-white dark:hover:bg-purple-800/50"
+                    onClick={closeSheet}
+                  >
+                    Services
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    className="px-4 py-2 text-gray-800 hover:bg-purple-100 dark:text-white dark:hover:bg-purple-800/50"
+                    onClick={closeSheet}
+                  >
+                    Contact
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className="px-4 py-2 text-gray-800 hover:bg-purple-100 dark:text-white dark:hover:bg-purple-800/50"
+                    onClick={closeSheet}
+                  >
+                    Blogs
+                  </Link>
+                  <Link
+                    href="/bookaappointment"
+                    className="px-4 py-2 text-gray-800 hover:bg-purple-100 dark:text-white dark:hover:bg-purple-800/50"
+                    onClick={closeSheet}
+                  >
+                    Book Appointment
+                  </Link>
+                </nav>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
