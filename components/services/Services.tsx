@@ -83,7 +83,7 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className={` p-4 md:p-6  lg:p-8 rounded-xl ${service.bgColor} border-t-4 ${service.borderColor} shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl`}
+              className={` p-2 md:p-4  lg:p-6 rounded-xl ${service.bgColor}  ${service.borderColor} shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl`}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               whileHover={{ 
