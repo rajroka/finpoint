@@ -23,7 +23,7 @@ export default async function Page({
         <p className="text-lg">
           Nepal's tax system consists of direct and indirect taxes. The main direct tax is income tax, which applies to individuals, businesses, and corporations. The indirect taxes include VAT (Value Added Tax) and excise duties. The tax rates and slabs vary based on income levels, business types, and specific economic activities.
         </p>
-        <p className="mt-4 text-lg">
+        <p className="mt-4 text-lg  ">
           The government of Nepal imposes progressive tax rates on individual income, meaning that higher earners pay a higher percentage of tax. Additionally, businesses are required to pay corporate tax, which varies by sector. VAT is currently set at 13% and is applicable to most goods and services.
         </p>
         <p className="mt-4 text-lg">

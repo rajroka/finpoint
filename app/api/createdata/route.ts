@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import Appointment from "@/app/model/appointmentModel";
-import connectToDatabase from "@/app/libs/db";
+
 
 export async function POST(req: NextRequest) {
   try {
-    await connectToDatabase();
+    
 
     const { fullName, email, message } = await req.json();
 
