@@ -83,27 +83,27 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div>
-            <label className="block text-gray-600 dark:text-gray-300">Full Name</label>
+            <label className="block text-sm  text-gray-600 dark:text-gray-300">Full Name</label>
             <input
               type="text"
               {...register("fullName", { required: "Name is required" })}
-              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500"
             />
             {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName.message as string}</p>}
           </div>
 
           <div>
-            <label className="block text-gray-600 dark:text-gray-300">Phone No</label>
+            <label className="block text-sm  text-gray-600 dark:text-gray-300">Phone No</label>
             <input
               type="tel"
               {...register("phoneno", { required: "Phone number is required" })}
-              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500"
             />
             {errors.phoneno && <p className="text-red-500 text-sm">{errors.phoneno.message as string}</p>}
           </div>
 
           <div>
-            <label className="block text-gray-600 dark:text-gray-300">Email</label>
+            <label className="block text-sm  text-gray-600 dark:text-gray-300">Email</label>
             <input
               type="email"
               {...register("email", {
@@ -113,23 +113,23 @@ const Contact = () => {
                   message: "Invalid email format",
                 },
               })}
-              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500"
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message as string}</p>}
           </div>
 
           <div>
-            <label className="block text-gray-600 dark:text-gray-300">Message</label>
+            <label className="block text-sm  text-gray-600 dark:text-gray-300">Message</label>
             <textarea
               {...register("message", { required: "Message is required" })}
-              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-blue-500 h-28"
+              className="w-full p-3 border rounded bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 h-28"
             />
             {errors.message && <p className="text-red-500 text-sm">{errors.message.message as string}</p>}
           </div>
 
           <button
             type="submit"
-            className="w-full flex justify-center items-center bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition dark:bg-blue-500 dark:hover:bg-blue-600"
+            className="w-full flex justify-center items-center bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-1 focus:ring-purple-500"
             disabled={loading}
           >
             {loading ? <Spinner /> : "Send Message"}
